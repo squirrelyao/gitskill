@@ -23,4 +23,5 @@ public interface EmpDAO {
  public int countEmpByPage(QueryEmp queryEmp);
 
  public Emp findEmpByEmp_name (String emp_name);
+ public Emp findEmpByUser_name (String user_name);
 }

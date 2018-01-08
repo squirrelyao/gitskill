@@ -177,7 +177,7 @@ where id=#{item.id}
     <if test= " orderbyDesc !=null and  orderbyDesc!='' " >
      ${orderbyDesc} desc, 
     </if>
-       #{id} limit #{startrows},#{pagesize}
+       id limit #{startrows},#{pagesize}
     </select>
 
     <sql id="findContract">
@@ -361,8 +361,5 @@ where id=#{item.id}
 
     <select id="findContractByContract_number" parameterType="String" resultType="entity.table.Contract">
        select * from contract_table where contract_number=#{contract_number}
-    </select>
-    <select id="findContractByContract_addr" parameterType="String" resultType="entity.table.Contract">
-       select * from contract_table where contract_addr=#{contract_addr}
     </select>
 </mapper> 

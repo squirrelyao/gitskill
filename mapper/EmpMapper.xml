@@ -77,7 +77,7 @@ where id=#{item.id}
     <if test= " orderbyDesc !=null and  orderbyDesc!='' " >
      ${orderbyDesc} desc, 
     </if>
-       #{id} limit #{startrows},#{pagesize}
+       id limit #{startrows},#{pagesize}
     </select>
 
     <sql id="findEmp">
@@ -115,5 +115,8 @@ where id=#{item.id}
 
     <select id="findEmpByEmp_name" parameterType="String" resultType="entity.set.Emp">
        select * from emp_set where emp_name=#{emp_name}
+    </select>
+    <select id="findEmpByUser_name" parameterType="String" resultType="entity.set.Emp">
+       select * from emp_set where user_name=#{user_name}
     </select>
 </mapper> 

@@ -23,5 +23,4 @@ public interface ContractDAO {
  public int countContractByPage(QueryContract queryContract);
 
  public Contract findContractByContract_number (String contract_number);
- public Contract findContractByContract_addr (String contract_addr);
 }

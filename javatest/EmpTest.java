@@ -115,6 +115,13 @@ public class EmpTest {
     }
 
 
+    @Test
+    public void finEmpByUser_name() {
+        Emp emp =dao.findEmpByUser_name("");
+        System.out.println(emp);
+    }
+
+
 
 }
 
