@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.set.EmpDAO" > 
+    <insert id="addEmp" parameterType="entity.set.Emp">
+     insert into emp_set values(
+#{id}
+,#{emp_name}
+,#{dept_id}
+,#{master_id}
+,#{user_name}
+,#{password}
+)
+    </insert>
+    <insert id="addEmps" parameterType="List">
+     insert into emp_set values
+    <foreach collection="list" item="item" index="index" open="" separator="," close="" >  
+(
+#{item.id}
+,#{item.emp_name}
+,#{item.dept_id}
+,#{item.master_id}
+,#{item.user_name}
+,#{item.password}
+)
+    </foreach>
+    </insert>
+
+    <delete id="delEmp" parameterType="int">
+     delete from emp_set where id=#{id}
+    </delete>
+
+    <delete id="delEmps" parameterType="List">
+     delete from emp_set where id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >  
+#{item}
+    </foreach>
+
+    </delete>
+
+
+    <update id="updateEmp" parameterType="entity.set.Emp">
+     update emp_set set 
+emp_name=#{emp_name}
+,dept_id=#{dept_id}
+,master_id=#{master_id}
+,user_name=#{user_name}
+,password=#{password}
+ where id=#{id}
+    </update>
+
+    <update id="updateEmps" parameterType="List">
+    <foreach collection="list" item="item" index="index" open="" separator=";" close="" >  
+update emp_set
+    <set> 
+emp_name=#{item.emp_name}
+,dept_id=#{item.dept_id}
+,master_id=#{item.master_id}
+,user_name=#{item.user_name}
+,password=#{item.password}
+ </set>
+where id=#{item.id}
+    </foreach>
+    </update>
+
+
+    <select id="findEmpById" parameterType="int" resultType="entity.set.Emp">
+     select * from emp_set where id=#{id}
+    </select>
+
+    <select id="findEmpByPage" parameterType="entity.ADO.QueryEmp" resultType="entity.set.Emp">
+    <include refid="findEmp"/>
+       order by 
+    <if test= " orderby !=null and  orderby!='' " >
+     ${orderby}, 
+    </if>
+    <if test= " orderbyDesc !=null and  orderbyDesc!='' " >
+     ${orderbyDesc} desc, 
+    </if>
+       #{id} limit #{startrows},#{pagesize}
+    </select>
+
+    <sql id="findEmp">
+     select * from emp_set where 1=1
+
+    <if test= " emp_name !=null and  emp_name!='' " >
+     and emp_name like concat('%',#{emp_name},'%')
+    </if>
+
+    <if test= " dept_id !=null and  dept_id!='' " >
+    <if test= " dept_id_sign !=null and  dept_id_sign!='' " >
+     and dept_id ${dept_id_sign} #{dept_id}
+    </if>
+    </if>
+
+    <if test= " master_id !=null and  master_id!='' " >
+    <if test= " master_id_sign !=null and  master_id_sign!='' " >
+     and master_id ${master_id_sign} #{master_id}
+    </if>
+    </if>
+
+    <if test= " user_name !=null and  user_name!='' " >
+     and user_name like concat('%',#{user_name},'%')
+    </if>
+
+    <if test= " password !=null and  password!='' " >
+     and password like concat('%',#{password},'%')
+    </if>
+    </sql>
+
+    <select id="countEmpByPage" parameterType="entity.ADO.QueryEmp" resultType="int">
+      select count(id) from (    <include refid="findEmp"/>) list
+    </select>
+
+
+    <select id="findEmpByEmp_name" parameterType="String" resultType="entity.set.Emp">
+       select * from emp_set where emp_name=#{emp_name}
+    </select>
+</mapper> 

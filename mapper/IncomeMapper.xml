@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.table.IncomeDAO" > 
+    <insert id="addIncome" parameterType="entity.table.Income">
+     insert into income_table values(
+#{id}
+,#{contract_addr}
+,#{collection_date}
+,#{collection_project}
+,#{collection_money}
+,#{get_way}
+,#{rebate}
+,#{payee}
+,#{note}
+)
+    </insert>
+    <insert id="addIncomes" parameterType="List">
+     insert into income_table values
+    <foreach collection="list" item="item" index="index" open="" separator="," close="" >  
+(
+#{item.id}
+,#{item.contract_addr}
+,#{item.collection_date}
+,#{item.collection_project}
+,#{item.collection_money}
+,#{item.get_way}
+,#{item.rebate}
+,#{item.payee}
+,#{item.note}
+)
+    </foreach>
+    </insert>
+
+    <delete id="delIncome" parameterType="int">
+     delete from income_table where id=#{id}
+    </delete>
+
+    <delete id="delIncomes" parameterType="List">
+     delete from income_table where id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >  
+#{item}
+    </foreach>
+
+    </delete>
+
+
+    <update id="updateIncome" parameterType="entity.table.Income">
+     update income_table set 
+contract_addr=#{contract_addr}
+,collection_date=#{collection_date}
+,collection_project=#{collection_project}
+,collection_money=#{collection_money}
+,get_way=#{get_way}
+,rebate=#{rebate}
+,payee=#{payee}
+,note=#{note}
+ where id=#{id}
+    </update>
+
+    <update id="updateIncomes" parameterType="List">
+    <foreach collection="list" item="item" index="index" open="" separator=";" close="" >  
+update income_table
+    <set> 
+contract_addr=#{item.contract_addr}
+,collection_date=#{item.collection_date}
+,collection_project=#{item.collection_project}
+,collection_money=#{item.collection_money}
+,get_way=#{item.get_way}
+,rebate=#{item.rebate}
+,payee=#{item.payee}
+,note=#{item.note}
+ </set>
+where id=#{item.id}
+    </foreach>
+    </update>
+
+
+    <select id="findIncomeById" parameterType="int" resultType="entity.table.Income">
+     select * from income_table where id=#{id}
+    </select>
+
+    <select id="findIncomeByPage" parameterType="entity.ADO.QueryIncome" resultType="entity.table.Income">
+    <include refid="findIncome"/>
+       order by 
+    <if test= " orderby !=null and  orderby!='' " >
+     ${orderby}, 
+    </if>
+    <if test= " orderbyDesc !=null and  orderbyDesc!='' " >
+     ${orderbyDesc} desc, 
+    </if>
+       #{id} limit #{startrows},#{pagesize}
+    </select>
+
+    <sql id="findIncome">
+     select * from income_table where 1=1
+
+    <if test= " contract_addr !=null and  contract_addr!='' " >
+     and contract_addr like concat('%',#{contract_addr},'%')
+    </if>
+
+    <if test= " collection_date_start !=null and  collection_date_start!='' " >
+     <![CDATA[and collection_date >=]]>#{collection_date_start}
+    </if>
+
+    <if test= " collection_date_end !=null and  collection_date_end!='' " >
+     <![CDATA[and collection_date <=]]>#{collection_date_end}
+    </if>
+
+    <if test= " collection_project !=null and  collection_project!='' " >
+     and collection_project like concat('%',#{collection_project},'%')
+    </if>
+
+    <if test= " collection_money !=null and  collection_money!='' " >
+    <if test= " collection_money_sign !=null and  collection_money_sign!='' " >
+     and collection_money ${collection_money_sign} #{collection_money}
+    </if>
+    </if>
+
+    <if test= " get_way !=null and  get_way!='' " >
+     and get_way like concat('%',#{get_way},'%')
+    </if>
+
+    <if test= " rebate !=null and  rebate!='' " >
+    <if test= " rebate_sign !=null and  rebate_sign!='' " >
+     and rebate ${rebate_sign} #{rebate}
+    </if>
+    </if>
+
+    <if test= " payee !=null and  payee!='' " >
+     and payee like concat('%',#{payee},'%')
+    </if>
+
+    <if test= " note !=null and  note!='' " >
+     and note like concat('%',#{note},'%')
+    </if>
+    </sql>
+
+    <select id="countIncomeByPage" parameterType="entity.ADO.QueryIncome" resultType="int">
+      select count(id) from (    <include refid="findIncome"/>) list
+    </select>
+
+
+    <select id="findIncomeByContract_addr" parameterType="String" resultType="entity.table.Income">
+       select * from income_table where contract_addr=#{contract_addr}
+    </select>
+</mapper> 

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.table.MaterialDAO" > 
+    <insert id="addMaterial" parameterType="entity.table.Material">
+     insert into material_table values(
+#{id}
+,#{contract_addr}
+,#{mat_getway}
+,#{mat_name}
+,#{mat_factory}
+,#{mat_price}
+,#{mat_budget}
+,#{note}
+)
+    </insert>
+    <insert id="addMaterials" parameterType="List">
+     insert into material_table values
+    <foreach collection="list" item="item" index="index" open="" separator="," close="" >  
+(
+#{item.id}
+,#{item.contract_addr}
+,#{item.mat_getway}
+,#{item.mat_name}
+,#{item.mat_factory}
+,#{item.mat_price}
+,#{item.mat_budget}
+,#{item.note}
+)
+    </foreach>
+    </insert>
+
+    <delete id="delMaterial" parameterType="int">
+     delete from material_table where id=#{id}
+    </delete>
+
+    <delete id="delMaterials" parameterType="List">
+     delete from material_table where id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >  
+#{item}
+    </foreach>
+
+    </delete>
+
+
+    <update id="updateMaterial" parameterType="entity.table.Material">
+     update material_table set 
+contract_addr=#{contract_addr}
+,mat_getway=#{mat_getway}
+,mat_name=#{mat_name}
+,mat_factory=#{mat_factory}
+,mat_price=#{mat_price}
+,mat_budget=#{mat_budget}
+,note=#{note}
+ where id=#{id}
+    </update>
+
+    <update id="updateMaterials" parameterType="List">
+    <foreach collection="list" item="item" index="index" open="" separator=";" close="" >  
+update material_table
+    <set> 
+contract_addr=#{item.contract_addr}
+,mat_getway=#{item.mat_getway}
+,mat_name=#{item.mat_name}
+,mat_factory=#{item.mat_factory}
+,mat_price=#{item.mat_price}
+,mat_budget=#{item.mat_budget}
+,note=#{item.note}
+ </set>
+where id=#{item.id}
+    </foreach>
+    </update>
+
+
+    <select id="findMaterialById" parameterType="int" resultType="entity.table.Material">
+     select * from material_table where id=#{id}
+    </select>
+
+    <select id="findMaterialByPage" parameterType="entity.ADO.QueryMaterial" resultType="entity.table.Material">
+    <include refid="findMaterial"/>
+       order by 
+    <if test= " orderby !=null and  orderby!='' " >
+     ${orderby}, 
+    </if>
+    <if test= " orderbyDesc !=null and  orderbyDesc!='' " >
+     ${orderbyDesc} desc, 
+    </if>
+       #{id} limit #{startrows},#{pagesize}
+    </select>
+
+    <sql id="findMaterial">
+     select * from material_table where 1=1
+
+    <if test= " contract_addr !=null and  contract_addr!='' " >
+     and contract_addr like concat('%',#{contract_addr},'%')
+    </if>
+
+    <if test= " mat_getway !=null and  mat_getway!='' " >
+     and mat_getway like concat('%',#{mat_getway},'%')
+    </if>
+
+    <if test= " mat_name !=null and  mat_name!='' " >
+     and mat_name like concat('%',#{mat_name},'%')
+    </if>
+
+    <if test= " mat_factory !=null and  mat_factory!='' " >
+     and mat_factory like concat('%',#{mat_factory},'%')
+    </if>
+
+    <if test= " mat_price !=null and  mat_price!='' " >
+    <if test= " mat_price_sign !=null and  mat_price_sign!='' " >
+     and mat_price ${mat_price_sign} #{mat_price}
+    </if>
+    </if>
+
+    <if test= " mat_budget !=null and  mat_budget!='' " >
+    <if test= " mat_budget_sign !=null and  mat_budget_sign!='' " >
+     and mat_budget ${mat_budget_sign} #{mat_budget}
+    </if>
+    </if>
+
+    <if test= " note !=null and  note!='' " >
+     and note like concat('%',#{note},'%')
+    </if>
+    </sql>
+
+    <select id="countMaterialByPage" parameterType="entity.ADO.QueryMaterial" resultType="int">
+      select count(id) from (    <include refid="findMaterial"/>) list
+    </select>
+
+
+    <select id="findMaterialByContract_addr" parameterType="String" resultType="entity.table.Material">
+       select * from material_table where contract_addr=#{contract_addr}
+    </select>
+</mapper> 

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.table.SpendDAO" > 
+    <insert id="addSpend" parameterType="entity.table.Spend">
+     insert into spend_table values(
+#{id}
+,#{contract_addr}
+,#{spend_project1}
+,#{spend_project2}
+,#{spend_date}
+,#{spend_money}
+,#{spend_way}
+,#{payer}
+,#{note}
+)
+    </insert>
+    <insert id="addSpends" parameterType="List">
+     insert into spend_table values
+    <foreach collection="list" item="item" index="index" open="" separator="," close="" >  
+(
+#{item.id}
+,#{item.contract_addr}
+,#{item.spend_project1}
+,#{item.spend_project2}
+,#{item.spend_date}
+,#{item.spend_money}
+,#{item.spend_way}
+,#{item.payer}
+,#{item.note}
+)
+    </foreach>
+    </insert>
+
+    <delete id="delSpend" parameterType="int">
+     delete from spend_table where id=#{id}
+    </delete>
+
+    <delete id="delSpends" parameterType="List">
+     delete from spend_table where id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >  
+#{item}
+    </foreach>
+
+    </delete>
+
+
+    <update id="updateSpend" parameterType="entity.table.Spend">
+     update spend_table set 
+contract_addr=#{contract_addr}
+,spend_project1=#{spend_project1}
+,spend_project2=#{spend_project2}
+,spend_date=#{spend_date}
+,spend_money=#{spend_money}
+,spend_way=#{spend_way}
+,payer=#{payer}
+,note=#{note}
+ where id=#{id}
+    </update>
+
+    <update id="updateSpends" parameterType="List">
+    <foreach collection="list" item="item" index="index" open="" separator=";" close="" >  
+update spend_table
+    <set> 
+contract_addr=#{item.contract_addr}
+,spend_project1=#{item.spend_project1}
+,spend_project2=#{item.spend_project2}
+,spend_date=#{item.spend_date}
+,spend_money=#{item.spend_money}
+,spend_way=#{item.spend_way}
+,payer=#{item.payer}
+,note=#{item.note}
+ </set>
+where id=#{item.id}
+    </foreach>
+    </update>
+
+
+    <select id="findSpendById" parameterType="int" resultType="entity.table.Spend">
+     select * from spend_table where id=#{id}
+    </select>
+
+    <select id="findSpendByPage" parameterType="entity.ADO.QuerySpend" resultType="entity.table.Spend">
+    <include refid="findSpend"/>
+       order by 
+    <if test= " orderby !=null and  orderby!='' " >
+     ${orderby}, 
+    </if>
+    <if test= " orderbyDesc !=null and  orderbyDesc!='' " >
+     ${orderbyDesc} desc, 
+    </if>
+       #{id} limit #{startrows},#{pagesize}
+    </select>
+
+    <sql id="findSpend">
+     select * from spend_table where 1=1
+
+    <if test= " contract_addr !=null and  contract_addr!='' " >
+     and contract_addr like concat('%',#{contract_addr},'%')
+    </if>
+
+    <if test= " spend_project1 !=null and  spend_project1!='' " >
+     and spend_project1 like concat('%',#{spend_project1},'%')
+    </if>
+
+    <if test= " spend_project2 !=null and  spend_project2!='' " >
+     and spend_project2 like concat('%',#{spend_project2},'%')
+    </if>
+
+    <if test= " spend_date_start !=null and  spend_date_start!='' " >
+     <![CDATA[and spend_date >=]]>#{spend_date_start}
+    </if>
+
+    <if test= " spend_date_end !=null and  spend_date_end!='' " >
+     <![CDATA[and spend_date <=]]>#{spend_date_end}
+    </if>
+
+    <if test= " spend_money !=null and  spend_money!='' " >
+    <if test= " spend_money_sign !=null and  spend_money_sign!='' " >
+     and spend_money ${spend_money_sign} #{spend_money}
+    </if>
+    </if>
+
+    <if test= " spend_way !=null and  spend_way!='' " >
+     and spend_way like concat('%',#{spend_way},'%')
+    </if>
+
+    <if test= " payer !=null and  payer!='' " >
+     and payer like concat('%',#{payer},'%')
+    </if>
+
+    <if test= " note !=null and  note!='' " >
+     and note like concat('%',#{note},'%')
+    </if>
+    </sql>
+
+    <select id="countSpendByPage" parameterType="entity.ADO.QuerySpend" resultType="int">
+      select count(id) from (    <include refid="findSpend"/>) list
+    </select>
+
+
+    <select id="findSpendByContract_addr" parameterType="String" resultType="entity.table.Spend">
+       select * from spend_table where contract_addr=#{contract_addr}
+    </select>
+</mapper> 

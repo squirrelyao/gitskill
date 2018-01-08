@@ -1,0 +1,33 @@
+使用说明：
+注意：1.不要更改表单结构
+	  2.不要在U列之前删除或者添加新列（A-T列不要动）
+星号项目为必填项目。
+ 实体名：java的实体类名
+ 包名：实体类所在包名
+ 列名：数据库列名
+ 类型：该列数据类型
+*列名与类型获得方法见第二页
+
+生成器可以生成4个文件
+mapper，DAO，entity，ADO(辅助查询类)
+
+使用时，数据填写好后，先按“生成代码”，
+然后按“生成文件”，会在当前文件夹生成相应文件
+mapper，DAO文件 生成后可以直接使用
+entity，ADO文件 还需要自己生成 序列号，
+get，set方法及toString 方法
+
+
+
+
+    <if test="clinicId!=null and clinicId!=''">
+		and
+		<if test="sysId!=null and sysId!='' and sysId != -1">
+		(
+		</if> //这样不会因为下面不满足而多出括号
+		clinic_id  =#{clinicId}
+     </if>
+	 
+     <if test="sysId!=null and sysId!='' and sysId != -1">
+		or  sys_id =#{sysId} )
+     </if>
