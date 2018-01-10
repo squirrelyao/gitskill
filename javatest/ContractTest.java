@@ -115,6 +115,12 @@ public class ContractTest {
     }
 
 
+    @Test
+    public void finContractByContract_addr() {
+        Contract contract =dao.findContractByContract_addr("");
+        System.out.println(contract);
+    }
+
+
 
 }
-

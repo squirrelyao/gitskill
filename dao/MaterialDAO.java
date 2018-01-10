@@ -8,16 +8,16 @@ import entity.ADO.QueryMaterial;
 import entity.table.Material;
 @Repository
 public interface MaterialDAO {
- //Ôö
+ //å¢
  public int addMaterial(Material material);
  public int addMaterials(List<Material> list);
- //É¾
+ //åˆ 
  public int delMaterial(Integer id);
  public int delMaterials(List<Integer> list);
- //¸Ä
+ //æ”¹
  public int updateMaterial(Material material);
  public int updateMaterials(List<Material> List);
- //²é
+ //æŸ¥
  public Material findMaterialById(Integer id);
  public List<Material> findMaterialByPage(QueryMaterial queryMaterial);
  public int countMaterialByPage(QueryMaterial queryMaterial);

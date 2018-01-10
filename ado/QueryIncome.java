@@ -11,10 +11,10 @@ public class QueryIncome implements Serializable{
     @DateTimeFormat(pattern="yyyy-MM-dd")
      private Date collection_date_end;
      private String collection_project;
-     private String collection_money_sign;//判定大小big or small
+     private String collection_money_sign;//鍒ゅ畾澶у皬big or small
      private Double collection_money;
      private String get_way;
-     private String rebate_sign;//判定大小big or small
+     private String rebate_sign;//鍒ゅ畾澶у皬big or small
      private Double rebate;
      private String payee;
      private String note;

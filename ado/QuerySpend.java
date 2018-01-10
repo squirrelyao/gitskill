@@ -12,7 +12,7 @@ public class QuerySpend implements Serializable{
      private Date spend_date_start;
     @DateTimeFormat(pattern="yyyy-MM-dd")
      private Date spend_date_end;
-     private String spend_money_sign;//ÅĞ¶¨´óĞ¡big or small
+     private String spend_money_sign;//åˆ¤å®šå¤§å°big or small
      private Double spend_money;
      private String spend_way;
      private String payer;

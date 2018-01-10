@@ -8,16 +8,16 @@ import entity.ADO.QueryIncome;
 import entity.table.Income;
 @Repository
 public interface IncomeDAO {
- //Ôö
+ //å¢ž
  public int addIncome(Income income);
  public int addIncomes(List<Income> list);
- //É¾
+ //åˆ 
  public int delIncome(Integer id);
  public int delIncomes(List<Integer> list);
- //¸Ä
+ //æ”¹
  public int updateIncome(Income income);
  public int updateIncomes(List<Income> List);
- //²é
+ //æŸ¥
  public Income findIncomeById(Integer id);
  public List<Income> findIncomeByPage(QueryIncome queryIncome);
  public int countIncomeByPage(QueryIncome queryIncome);

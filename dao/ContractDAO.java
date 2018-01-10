@@ -8,19 +8,20 @@ import entity.ADO.QueryContract;
 import entity.table.Contract;
 @Repository
 public interface ContractDAO {
- //Ôö
+ //å¢ž
  public int addContract(Contract contract);
  public int addContracts(List<Contract> list);
- //É¾
+ //åˆ 
  public int delContract(Integer id);
  public int delContracts(List<Integer> list);
- //¸Ä
+ //æ”¹
  public int updateContract(Contract contract);
  public int updateContracts(List<Contract> List);
- //²é
+ //æŸ¥
  public Contract findContractById(Integer id);
  public List<Contract> findContractByPage(QueryContract queryContract);
  public int countContractByPage(QueryContract queryContract);
 
  public Contract findContractByContract_number (String contract_number);
+ public Contract findContractByContract_addr (String contract_addr);
 }

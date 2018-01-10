@@ -6,7 +6,7 @@
         <tr>
             <th data-options="field:'id',width:80">id</th>
             <th data-options="field:'contract_addr',width:80">contract_addr</th>
-            <th data-options="field:'collection_date',width:80">collection_date</th>
+            <th data-options="field:'collection_date',width:80,formatter:dateFormate">collection_date</th>
             <th data-options="field:'collection_project',width:80">collection_project</th>
             <th data-options="field:'collection_money',width:80">collection_money</th>
             <th data-options="field:'get_way',width:80">get_way</th>
@@ -32,25 +32,24 @@
             d: <input id="last_pay" type="checkbox" >
             e: <input id="custodian" class="easyui-textbox" panelHeight="auto" style="width:120px">
             f: <input id="customer_phone" class="easyui-textbox" panelHeight="auto" style="width:120px">         
-            <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="income_query()">²éÑ¯</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="income_query()">æŸ¥è¯¢</a>
         </div>
         </div>
 </table>
       
-<div id="income_del_confirm" class="easyui-window" title="È·ÈÏÉ¾³ý" style="width:400px;height:200px"   
+<div id="income_del_confirm" class="easyui-window" title="ç¡®è®¤åˆ é™¤" style="width:400px;height:200px"   
         data-options="modal:true,inline:true,closed:true">     
     <div class="easyui-layout" data-options="fit:true">
         <div data-options="region:'center'" style="padding:10px;">
             <p id="incomeMessage"></p> 
         </div>
         <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="#" onclick="income_del_confirm();" style="width:80px">È·ÈÏÉ¾³ý</a>
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="#" onclick="income_del_cancel();" style="width:80px">·ÅÆúÍË³ö</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="#" onclick="income_del_confirm();" style="width:80px">ç¡®è®¤åˆ é™¤</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="#" onclick="income_del_cancel();" style="width:80px">æ”¾å¼ƒé€€å‡º</a>
         </div>
     </div>                
 </div> 
  
-<%@ include file="list/income_table_page.jsp" %>
 
 
 

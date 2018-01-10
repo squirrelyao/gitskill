@@ -25,25 +25,24 @@
             d: <input id="last_pay" type="checkbox" >
             e: <input id="custodian" class="easyui-textbox" panelHeight="auto" style="width:120px">
             f: <input id="customer_phone" class="easyui-textbox" panelHeight="auto" style="width:120px">         
-            <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="dept_query()">²éÑ¯</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="dept_query()">æŸ¥è¯¢</a>
         </div>
         </div>
 </table>
       
-<div id="dept_del_confirm" class="easyui-window" title="È·ÈÏÉ¾³ý" style="width:400px;height:200px"   
+<div id="dept_del_confirm" class="easyui-window" title="ç¡®è®¤åˆ é™¤" style="width:400px;height:200px"   
         data-options="modal:true,inline:true,closed:true">     
     <div class="easyui-layout" data-options="fit:true">
         <div data-options="region:'center'" style="padding:10px;">
             <p id="deptMessage"></p> 
         </div>
         <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="#" onclick="dept_del_confirm();" style="width:80px">È·ÈÏÉ¾³ý</a>
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="#" onclick="dept_del_cancel();" style="width:80px">·ÅÆúÍË³ö</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="#" onclick="dept_del_confirm();" style="width:80px">ç¡®è®¤åˆ é™¤</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="#" onclick="dept_del_cancel();" style="width:80px">æ”¾å¼ƒé€€å‡º</a>
         </div>
     </div>                
 </div> 
  
-<%@ include file="list/dept_set_page.jsp" %>
 
 
 

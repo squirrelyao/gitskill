@@ -362,4 +362,7 @@ where id=#{item.id}
     <select id="findContractByContract_number" parameterType="String" resultType="entity.table.Contract">
        select * from contract_table where contract_number=#{contract_number}
     </select>
+    <select id="findContractByContract_addr" parameterType="String" resultType="entity.table.Contract">
+       select * from contract_table where contract_addr=#{contract_addr}
+    </select>
 </mapper> 

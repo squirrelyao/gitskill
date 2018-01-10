@@ -8,16 +8,16 @@ import entity.ADO.QuerySpend;
 import entity.table.Spend;
 @Repository
 public interface SpendDAO {
- //Ôö
+ //å¢ž
  public int addSpend(Spend spend);
  public int addSpends(List<Spend> list);
- //É¾
+ //åˆ 
  public int delSpend(Integer id);
  public int delSpends(List<Integer> list);
- //¸Ä
+ //æ”¹
  public int updateSpend(Spend spend);
  public int updateSpends(List<Spend> List);
- //²é
+ //æŸ¥
  public Spend findSpendById(Integer id);
  public List<Spend> findSpendByPage(QuerySpend querySpend);
  public int countSpendByPage(QuerySpend querySpend);

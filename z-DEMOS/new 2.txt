@@ -4,12 +4,12 @@
 <table id="emp"  style="width:80%;height:60%">
     <thead>
         <tr>
-            <th data-options="field:'id',width:80">id</th>
-            <th data-options="field:'emp_name',width:80">emp_name</th>
-            <th data-options="field:'dept_id',width:80">dept_id</th>
-            <th data-options="field:'master_id',width:80">master_id</th>
-            <th data-options="field:'user_name',width:80">user_name</th>
-            <th data-options="field:'password',width:80">password</th>
+            <th data-options="field:'id',width:30,hidden:'false'">id</th>
+            <th data-options="field:'emp_name',width:30,hidden:'false'">emp_name</th>
+            <th data-options="field:'dept_id',width:30,hidden:'false'">dept_id</th>
+            <th data-options="field:'master_id',width:30,hidden:'false'">master_id</th>
+            <th data-options="field:'user_name',width:30,hidden:'false'">user_name</th>
+            <th data-options="field:'password',width:30,hidden:'false'">password</th>
 
         </tr>
     </thead>
@@ -47,6 +47,8 @@
     </div>                
 </div> 
  
+<%@ include file="list/emp_set_page.jsp" %>
+
 
 
 

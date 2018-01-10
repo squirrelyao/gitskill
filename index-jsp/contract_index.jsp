@@ -6,12 +6,12 @@
         <tr>
             <th data-options="field:'id',width:80">id</th>
             <th data-options="field:'contract_number',width:80">contract_number</th>
-            <th data-options="field:'contract_date',width:80">contract_date</th>
+            <th data-options="field:'contract_date',width:80,formatter:dateFormate">contract_date</th>
             <th data-options="field:'contract_addr',width:80">contract_addr</th>
             <th data-options="field:'contract_area',width:80">contract_area</th>
             <th data-options="field:'contract_type',width:80">contract_type</th>
-            <th data-options="field:'contract_starttime',width:80">contract_starttime</th>
-            <th data-options="field:'contract_endtime',width:80">contract_endtime</th>
+            <th data-options="field:'contract_starttime',width:80,formatter:dateFormate">contract_starttime</th>
+            <th data-options="field:'contract_endtime',width:80,formatter:dateFormate">contract_endtime</th>
             <th data-options="field:'limit_time',width:80,hidden:'true'">limit_time</th>
             <th data-options="field:'customer_name',width:80,hidden:'true'">customer_name</th>
             <th data-options="field:'customer_phone',width:80,hidden:'true'">customer_phone</th>
@@ -34,7 +34,7 @@
             <th data-options="field:'profit',width:80,hidden:'true'">profit</th>
             <th data-options="field:'status',width:80,hidden:'true'">status</th>
             <th data-options="field:'form_maker',width:80,hidden:'true'">form_maker</th>
-            <th data-options="field:'last_modify',width:80,hidden:'true'">last_modify</th>
+            <th data-options="field:'last_modify',width:80,hidden:'true',formatter:dateFormate">last_modify</th>
 
         </tr>
     </thead>
@@ -54,25 +54,24 @@
             d: <input id="last_pay" type="checkbox" >
             e: <input id="custodian" class="easyui-textbox" panelHeight="auto" style="width:120px">
             f: <input id="customer_phone" class="easyui-textbox" panelHeight="auto" style="width:120px">         
-            <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="contract_query()">²éÑ¯</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="contract_query()">æŸ¥è¯¢</a>
         </div>
         </div>
 </table>
       
-<div id="contract_del_confirm" class="easyui-window" title="È·ÈÏÉ¾³ý" style="width:400px;height:200px"   
+<div id="contract_del_confirm" class="easyui-window" title="ç¡®è®¤åˆ é™¤" style="width:400px;height:200px"   
         data-options="modal:true,inline:true,closed:true">     
     <div class="easyui-layout" data-options="fit:true">
         <div data-options="region:'center'" style="padding:10px;">
             <p id="contractMessage"></p> 
         </div>
         <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="#" onclick="contract_del_confirm();" style="width:80px">È·ÈÏÉ¾³ý</a>
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="#" onclick="contract_del_cancel();" style="width:80px">·ÅÆúÍË³ö</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="#" onclick="contract_del_confirm();" style="width:80px">ç¡®è®¤åˆ é™¤</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="#" onclick="contract_del_cancel();" style="width:80px">æ”¾å¼ƒé€€å‡º</a>
         </div>
     </div>                
 </div> 
  
-<%@ include file="list/contract_table_page.jsp" %>
 
 
 

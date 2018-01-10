@@ -7,9 +7,9 @@ public class QueryMaterial implements Serializable{
      private String mat_getway;
      private String mat_name;
      private String mat_factory;
-     private String mat_price_sign;//判定大小big or small
+     private String mat_price_sign;//鍒ゅ畾澶у皬big or small
      private Double mat_price;
-     private String mat_budget_sign;//判定大小big or small
+     private String mat_budget_sign;//鍒ゅ畾澶у皬big or small
      private Double mat_budget;
      private String note;
     private Integer startrows;

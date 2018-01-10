@@ -8,16 +8,16 @@ import entity.ADO.QueryDept;
 import entity.set.Dept;
 @Repository
 public interface DeptDAO {
- //Ôö
+ //å¢ž
  public int addDept(Dept dept);
  public int addDepts(List<Dept> list);
- //É¾
+ //åˆ 
  public int delDept(Integer id);
  public int delDepts(List<Integer> list);
- //¸Ä
+ //æ”¹
  public int updateDept(Dept dept);
  public int updateDepts(List<Dept> List);
- //²é
+ //æŸ¥
  public Dept findDeptById(Integer id);
  public List<Dept> findDeptByPage(QueryDept queryDept);
  public int countDeptByPage(QueryDept queryDept);

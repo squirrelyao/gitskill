@@ -52,6 +52,8 @@ public class ContractService {
  
     public Contract findContractByContract_number(String contract_number) {
         return contractDAO.findContractByContract_number(contract_number);
+    }    public Contract findContractByContract_addr(String contract_addr) {
+        return contractDAO.findContractByContract_addr(contract_addr);
     }
 
 }

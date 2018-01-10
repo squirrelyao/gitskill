@@ -19,98 +19,103 @@ public class EmpController {
     @Resource(name="empService")
     private EmpService empService;
  
-    @RequestMapping("emp_page_load.do")
-    public String emp_page_load() {
+    @RequestMapping("emp_index_load.do")
+    public String emp_index_load() {
         return "set/emp_index";
     }
  
+    @RequestMapping("emp_page_load.do")
+    public String emp_page_load() {
+        return "set/page/emp_page";
+    }
+
     @RequestMapping("emp_add.do")
     @ResponseBody
     public JsonResult emp_add(Emp emp) {
         if(emp==null) {
-            return new JsonResult("保存对象不能为空");
+            return new JsonResult("淇濆瓨瀵硅薄涓嶈兘涓虹┖");
         }
         int result_number=empService.addEmp(emp);
         if(result_number!=1) {
-            return new JsonResult("保存失败");
+            return new JsonResult("淇濆瓨澶辫触");
         }
-        return new JsonResult("保存成功");
+        return new JsonResult("淇濆瓨鎴愬姛");
     }
  
     @RequestMapping("emp_adds.do")
     @ResponseBody
     public JsonResult emp_adds(List<Emp> list) {
         if(list==null) {
-            return new JsonResult("保存对象不能为空");
+            return new JsonResult("淇濆瓨瀵硅薄涓嶈兘涓虹┖");
         }
         int result_number=empService.addEmps(list);
         if(result_number<1) {
-            return new JsonResult("保存失败");
+            return new JsonResult("淇濆瓨澶辫触");
         }
-        return new JsonResult("保存成功");
+        return new JsonResult("淇濆瓨鎴愬姛");
     }
  
     @RequestMapping("emp_del.do")
     @ResponseBody
     public JsonResult emp_del(Integer id) {
         if(id==null) {
-            return new JsonResult("删除对象不能为空");
+            return new JsonResult("鍒犻櫎瀵硅薄涓嶈兘涓虹┖");
         }
         int result_number=empService.delEmp(id);
         if(result_number<1) {
-            return new JsonResult("保存失败");
+            return new JsonResult("淇濆瓨澶辫触");
         }
-        return new JsonResult("保存成功");
+        return new JsonResult("淇濆瓨鎴愬姛");
     }
  
     @RequestMapping("emp_dels.do")
     @ResponseBody
     public JsonResult emp_dels(List<Integer> list) {
         if(list==null) {
-            return new JsonResult("删除对象不能为空");
+            return new JsonResult("鍒犻櫎瀵硅薄涓嶈兘涓虹┖");
         }
         int result_number=empService.delEmps(list);
         if(result_number<1) {
-            return new JsonResult("保存失败");
+            return new JsonResult("淇濆瓨澶辫触");
         }
-        return new JsonResult("保存成功");
+        return new JsonResult("淇濆瓨鎴愬姛");
     }
  
     @RequestMapping("emp_update.do")
     @ResponseBody
     public JsonResult emp_update(Emp emp) {
         if(emp==null) {
-            return new JsonResult("更新对象不能为空");
+            return new JsonResult("鏇存柊瀵硅薄涓嶈兘涓虹┖");
         }
         int result_number=empService.updateEmp(emp);
         if(result_number<1) {
-            return new JsonResult("更新失败");
+            return new JsonResult("鏇存柊澶辫触");
         }
-        return new JsonResult("更新成功");
+        return new JsonResult("鏇存柊鎴愬姛");
     }
  
     @RequestMapping("emp_updates.do")
     @ResponseBody
     public JsonResult emp_updates(List<Emp> list) {
         if(list==null) {
-            return new JsonResult("更新对象不能为空");
+            return new JsonResult("鏇存柊瀵硅薄涓嶈兘涓虹┖");
         }
         int result_number=empService.updateEmps(list);
         if(result_number<1) {
-            return new JsonResult("更新失败");
+            return new JsonResult("鏇存柊澶辫触");
         }
-        return new JsonResult("更新成功");
+        return new JsonResult("鏇存柊鎴愬姛");
     }
  
     @RequestMapping("emp_findById.do")
     @ResponseBody
     public JsonResult emp_findById(Integer id) {
         if(id==null) {
-            return new JsonResult("查询对象不能为空");
+            return new JsonResult("鏌ヨ瀵硅薄涓嶈兘涓虹┖");
         }
         Emp emp=empService.findEmpById(id);
         if(emp==null) {
-            return new JsonResult("查询失败");
+            return new JsonResult("鏌ヨ澶辫触");
         }
         return new JsonResult(emp);
     }
@@ -119,11 +124,11 @@ public class EmpController {
     @ResponseBody
     public JsonResult emp_findByPage(QueryEmp queryEmp) {
         if(queryEmp==null) {
-            return new JsonResult("查询对象不能为空");
+            return new JsonResult("鏌ヨ瀵硅薄涓嶈兘涓虹┖");
         }
         Map<String,Object> map=empService.findEmpByPage(queryEmp);
         if(map==null) {
-            return new JsonResult("查询失败");
+            return new JsonResult("鏌ヨ澶辫触");
         }
         return new JsonResult(map);
     }
@@ -133,11 +138,11 @@ public class EmpController {
     @ResponseBody
     public JsonResult emp_findByEmp_name(String emp_name) {
         if(emp_name==null) {
-            return new JsonResult("查询对象不能为空");
+            return new JsonResult("鏌ヨ瀵硅薄涓嶈兘涓虹┖");
         }
         Emp emp=empService.findEmpByEmp_name(emp_name);
         if(emp==null) {
-            return new JsonResult("查询失败");
+            return new JsonResult("鏌ヨ澶辫触");
         }
         return new JsonResult(emp);
     }
@@ -146,15 +151,14 @@ public class EmpController {
     @ResponseBody
     public JsonResult emp_findByUser_name(String user_name) {
         if(user_name==null) {
-            return new JsonResult("查询对象不能为空");
+            return new JsonResult("鏌ヨ瀵硅薄涓嶈兘涓虹┖");
         }
         Emp emp=empService.findEmpByUser_name(user_name);
         if(emp==null) {
-            return new JsonResult("查询失败");
+            return new JsonResult("鏌ヨ澶辫触");
         }
         return new JsonResult(emp);
     }
  
  
 }
-
